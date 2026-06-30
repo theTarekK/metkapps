@@ -20,7 +20,7 @@ Replace `YOUR_USERNAME` with your GitHub username:
 cd /Users/tarekhalifa/Downloads/metkapps
 git init
 git add .
-git commit -m "Initial METK site"
+git commit -m "Initial METk site"
 git branch -M main
 git remote add origin https://github.com/YOUR_USERNAME/metkapps.git
 git push -u origin main

@@ -39,11 +39,11 @@ function App() {
       onPointerLeave={() => setPointer((current) => ({ ...current, active: false }))}
     >
       <nav className="nav" aria-label="Primary navigation">
-        <a className="brand-lockup" href="#top" aria-label="METK home">
+        <a className="brand-lockup" href="#top" aria-label="METk home">
           <span className="brand-mark" aria-hidden="true">
             <img src={`${import.meta.env.BASE_URL}images/metk-logo.png`} alt="" />
           </span>
-          <span>METK LLC</span>
+          <span>METk LLC</span>
         </a>
 
         <div className="nav-actions">
@@ -68,10 +68,10 @@ function App() {
         >
           <div className="eyebrow">
             <Sparkles size={16} strokeWidth={2.2} />
-            Official home of METK LLC
+            Official home of METk LLC
           </div>
 
-          <h1 id="hero-title">METK</h1>
+          <h1 id="hero-title">METk</h1>
 
           <p className="hero-copy">
             Independent mobile game studio
@@ -98,7 +98,7 @@ function App() {
           <div className="duelio-copy">
             <h2 id="duelio-title">Duelio</h2>
             <p>
-              A new iOS iMessage game from METK, built for quick competitive
+              A new iOS iMessage game from METk, built for quick competitive
               duels inside your conversations.
             </p>
           </div>
@@ -106,7 +106,7 @@ function App() {
       </section>
 
       <footer className="footer">
-        <span>METK LLC</span>
+        <span>METk LLC</span>
         <span>Founded by Tarek Khalifa</span>
         <a href={`mailto:${email}`}>
           <Mail size={16} strokeWidth={2.2} />

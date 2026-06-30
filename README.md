@@ -1,6 +1,6 @@
-# METK Apps
+# METk Apps
 
-Private local website for METK LLC.
+Private local website for METk LLC.
 
 ## Local preview
 
