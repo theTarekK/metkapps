@@ -41,7 +41,7 @@ function App() {
       <nav className="nav" aria-label="Primary navigation">
         <a className="brand-lockup" href="#top" aria-label="METK home">
           <span className="brand-mark" aria-hidden="true">
-            M
+            <img src={`${import.meta.env.BASE_URL}images/metk-logo.png`} alt="" />
           </span>
           <span>METK LLC</span>
         </a>
