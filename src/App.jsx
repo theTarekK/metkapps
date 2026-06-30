@@ -92,7 +92,7 @@ function App() {
           aria-labelledby="duelio-title"
         >
           <div className="icon-stage" aria-hidden="true">
-            <img src="/images/duelio-app-icon.png" alt="" />
+            <img src={`${import.meta.env.BASE_URL}images/duelio-app-icon.png`} alt="" />
           </div>
 
           <div className="duelio-copy">
