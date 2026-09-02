@@ -90,7 +90,9 @@ p {
 .footer-links,
 .footer-links a,
 .platform-row,
+.card-actions,
 .card-link,
+.card-secondary-link,
 .category-cloud span,
 .policy-principles,
 .policy-principles span {
@@ -521,17 +523,31 @@ p {
   font-weight: 720;
 }
 
-.card-link {
-  width: fit-content;
-  gap: 0.5rem;
+.card-actions {
+  position: relative;
+  z-index: 1;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
   margin-top: auto;
   padding-top: 1.7rem;
+}
+
+.card-link,
+.card-secondary-link {
+  width: fit-content;
+  gap: 0.5rem;
   color: var(--ink);
   font-weight: 820;
 }
 
-.card-link:hover {
+.card-link:hover,
+.card-secondary-link:hover {
   color: var(--teal);
+}
+
+.card-secondary-link {
+  color: rgba(246, 251, 255, 0.62);
+  font-size: 0.9rem;
 }
 
 .app-card-wordfit .card-kicker,

@@ -21,7 +21,8 @@ import AnimatedBackdrop from "./AnimatedBackdrop.jsx";
 const email = "contact@metkapps.com";
 const phoneDisplay = "(202) 290-8412";
 const phoneLink = "+12022908412";
-const duelioUrl = "https://duelioapp.com";
+const wordfitAppStoreUrl = "https://apps.apple.com/app/id6807604940";
+const duelioAppStoreUrl = "https://apps.apple.com/app/id6792538416";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -43,7 +44,7 @@ function BrandNav() {
       <div className="nav-actions">
         <a className="nav-link" href="/#apps">Apps</a>
         <a className="nav-link nav-wordfit" href="/wordfit/">WordFit</a>
-        <a className="nav-link nav-duelio" href={duelioUrl} target="_blank" rel="noreferrer">
+        <a className="nav-link nav-duelio" href={duelioAppStoreUrl} target="_blank" rel="noreferrer">
           Duelio
           <ExternalLink size={14} strokeWidth={2.2} />
         </a>
@@ -60,6 +61,8 @@ function Footer() {
         <span>Independent games by Tarek Khalifa</span>
       </div>
       <div className="footer-links" aria-label="Footer navigation">
+        <a href={wordfitAppStoreUrl} target="_blank" rel="noreferrer">WordFit on the App Store</a>
+        <a href={duelioAppStoreUrl} target="_blank" rel="noreferrer">Duelio on the App Store</a>
         <a href="/wordfit/support/">WordFit Support</a>
         <a href="/wordfit/privacy/">Privacy</a>
         <a href={`mailto:${email}`}>
@@ -99,15 +102,18 @@ function AppCard({ app, reduceMotion, delay = 0 }) {
           <span key={platform}>{platform}</span>
         ))}
       </div>
-      <a
-        className="card-link"
-        href={app.href}
-        target={app.external ? "_blank" : undefined}
-        rel={app.external ? "noreferrer" : undefined}
-      >
-        {app.action}
-        {app.external ? <ExternalLink size={17} /> : <ArrowRight size={18} />}
-      </a>
+      <div className="card-actions">
+        <a className="card-link" href={app.href} target="_blank" rel="noreferrer">
+          {app.action}
+          <ExternalLink size={17} />
+        </a>
+        {app.secondaryHref ? (
+          <a className="card-secondary-link" href={app.secondaryHref}>
+            {app.secondaryAction}
+            <ArrowRight size={16} />
+          </a>
+        ) : null}
+      </div>
     </motion.article>
   );
 }
@@ -121,8 +127,10 @@ function HomePage({ pointer, reduceMotion, motionTransition }) {
         "Fast, focused brain sprints powered by thousands of trivia, logic, number, visual, word, and myth-busting puzzles.",
       platforms: ["iPhone", "iPad", "Apple Watch"],
       status: "Coming soon",
-      href: "/wordfit/",
-      action: "Explore WordFit",
+      href: wordfitAppStoreUrl,
+      action: "View on the App Store",
+      secondaryHref: "/wordfit/",
+      secondaryAction: "Learn more",
       icon: "/images/wordfit-app-icon.png",
     },
     {
@@ -132,10 +140,9 @@ function HomePage({ pointer, reduceMotion, motionTransition }) {
         "An iOS iMessage game made for quick head-to-head competition without leaving your conversations.",
       platforms: ["iPhone", "iMessage"],
       status: "Available now",
-      href: duelioUrl,
-      action: "Visit Duelio",
+      href: duelioAppStoreUrl,
+      action: "View on the App Store",
       icon: "/images/duelio-app-icon.png",
-      external: true,
     },
   ];
 
@@ -259,11 +266,11 @@ function WordFitPage({ pointer, reduceMotion, motionTransition }) {
             myth-busting puzzles—twelve questions and forty seconds at a time.
           </p>
           <div className="action-row">
-            <a className="primary-action wordfit-action" href="#features">
-              See what’s inside
-              <ArrowRight size={20} strokeWidth={2.4} />
+            <a className="primary-action wordfit-action" href={wordfitAppStoreUrl} target="_blank" rel="noreferrer">
+              View on the App Store
+              <ExternalLink size={19} strokeWidth={2.4} />
             </a>
-            <a className="secondary-action" href="/wordfit/support/">Get support</a>
+            <a className="secondary-action" href="#features">See what’s inside</a>
           </div>
         </motion.div>
 
