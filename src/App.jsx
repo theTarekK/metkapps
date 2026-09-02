@@ -16,8 +16,8 @@ function Nav() {
       </a>
       <div className="nav-links">
         <a href="/#apps">Apps</a>
+        <a href="/support/">Support</a>
         <a href="/wordfit/privacy/">Privacy</a>
-        <a href="/#contact">Contact</a>
       </div>
     </nav>
   );
@@ -28,7 +28,7 @@ function Footer() {
     <footer className="footer">
       <span>© 2026 METk LLC</span>
       <div>
-        <a href="/wordfit/support/">Support</a>
+        <a href="/support/">Support</a>
         <a href="/wordfit/privacy/">Privacy</a>
         <a href={`mailto:${email}`}>{email}</a>
       </div>
@@ -78,32 +78,23 @@ function AppsPage() {
 
       <section id="apps" className="apps-grid" aria-label="METk apps">
         <AppCard
-          name="WordFit"
-          icon="/images/wordfit-app-icon.png"
-          description="Fast trivia, logic, number, visual, and word puzzles."
-          platforms={["iPhone", "iPad", "Apple Watch"]}
-          appStoreUrl={wordfitAppStoreUrl}
-          secondaryHref="/wordfit/support/"
-          secondaryLabel="Support"
-        />
-        <AppCard
           name="Duelio"
           icon="/images/duelio-app-icon.png"
           description="Quick competitive games with friends inside iMessage."
           platforms={["iPhone", "iMessage"]}
           appStoreUrl={duelioAppStoreUrl}
+          secondaryHref="/support/#duelio"
+          secondaryLabel="Support"
         />
-      </section>
-
-      <section id="contact" className="contact-strip" aria-labelledby="contact-title">
-        <div>
-          <p className="eyebrow">Contact</p>
-          <h2 id="contact-title">METk LLC</h2>
-        </div>
-        <div className="contact-links">
-          <a href={`mailto:${email}`}><Mail size={17} />{email}</a>
-          <a href={`tel:${phoneLink}`}><Phone size={17} />{phoneDisplay}</a>
-        </div>
+        <AppCard
+          name="WordFit"
+          icon="/images/wordfit-app-icon.png"
+          description="Fast trivia, logic, number, visual, and word puzzles."
+          platforms={["iPhone", "iPad", "Apple Watch"]}
+          appStoreUrl={wordfitAppStoreUrl}
+          secondaryHref="/support/#wordfit"
+          secondaryLabel="Support"
+        />
       </section>
     </div>
   );
@@ -113,44 +104,38 @@ function SupportPage() {
   return (
     <article className="subpage support-page">
       <header className="subpage-header">
-        <img src="/images/wordfit-app-icon.png" alt="WordFit app icon" />
+        <img src="/images/metk-logo.png" alt="METk logo" />
         <div>
-          <p className="eyebrow">WordFit</p>
+          <p className="eyebrow">METk LLC</p>
           <h1>Support</h1>
-          <p>Contact METk directly.</p>
+          <p>Choose an app.</p>
         </div>
       </header>
 
-      <div className="contact-cards">
-        <a href={`mailto:${email}?subject=WordFit%20Support`}>
-          <Mail size={20} />
-          <span><strong>Email</strong><small>{email}</small></span>
-        </a>
-        <a href={`tel:${phoneLink}`}>
-          <Phone size={20} />
-          <span><strong>Phone</strong><small>{phoneDisplay}</small></span>
-        </a>
+      <div className="support-apps">
+        <section id="duelio" className="support-app">
+          <img src="/images/duelio-app-icon.png" alt="Duelio app icon" />
+          <div>
+            <h2>Duelio</h2>
+            <a href={`mailto:${email}?subject=Duelio%20Support`}><Mail size={16} />Email support</a>
+          </div>
+          <a className="text-link" href={duelioAppStoreUrl} target="_blank" rel="noreferrer">App Store <ExternalLink size={14} /></a>
+        </section>
+
+        <section id="wordfit" className="support-app">
+          <img src="/images/wordfit-app-icon.png" alt="WordFit app icon" />
+          <div>
+            <h2>WordFit</h2>
+            <a href={`mailto:${email}?subject=WordFit%20Support`}><Mail size={16} />Email support</a>
+          </div>
+          <a className="text-link" href={wordfitAppStoreUrl} target="_blank" rel="noreferrer">App Store <ExternalLink size={14} /></a>
+        </section>
       </div>
 
-      <section className="faq" aria-label="WordFit help">
-        <details>
-          <summary>Do I need an account?</summary>
-          <p>No. WordFit works without a METk account or password.</p>
-        </details>
-        <details>
-          <summary>How does the leaderboard work?</summary>
-          <p>It is optional. Choose an anonymous or iCloud display name; only that name and your best score are public.</p>
-        </details>
-        <details>
-          <summary>How do I delete leaderboard data?</summary>
-          <p>Email <a href={`mailto:${email}?subject=WordFit%20Data%20Deletion`}>{email}</a> with your current display name.</p>
-        </details>
-      </section>
-
-      <a className="app-store-link standalone-link" href={wordfitAppStoreUrl} target="_blank" rel="noreferrer">
-        WordFit on the App Store
-        <ExternalLink size={16} />
-      </a>
+      <div className="support-contact">
+        <a href={`mailto:${email}`}><Mail size={16} />{email}</a>
+        <a href={`tel:${phoneLink}`}><Phone size={16} />{phoneDisplay}</a>
+      </div>
     </article>
   );
 }
@@ -223,7 +208,7 @@ function NotFoundPage() {
 function App() {
   let page;
   if (pagePath === "/" || pagePath === "/wordfit") page = <AppsPage />;
-  else if (pagePath === "/wordfit/support") page = <SupportPage />;
+  else if (pagePath === "/support" || pagePath === "/wordfit/support") page = <SupportPage />;
   else if (pagePath === "/wordfit/privacy") page = <PrivacyPage />;
   else page = <NotFoundPage />;
 

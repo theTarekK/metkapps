@@ -11,6 +11,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: `${projectRoot}index.html`,
+        support: `${projectRoot}support/index.html`,
         wordfit: `${projectRoot}wordfit/index.html`,
         wordfitSupport: `${projectRoot}wordfit/support/index.html`,
         wordfitPrivacy: `${projectRoot}wordfit/privacy/index.html`,
