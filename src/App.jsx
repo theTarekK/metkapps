@@ -6,6 +6,11 @@ const wordfitAppStoreUrl = "https://apps.apple.com/app/id6807604940";
 const duelioAppStoreUrl = "https://apps.apple.com/app/id6792538416";
 const duelioWebsiteUrl = "https://duelioapp.com/";
 const pagePath = window.location.pathname.replace(/\/+$/, "") || "/";
+const platformAvailability = [
+  { name: "iOS", status: "available" },
+  { name: "Android", status: "coming" },
+  { name: "Web", status: "coming" },
+];
 
 
 function Nav() {
@@ -39,7 +44,7 @@ function Footer() {
   );
 }
 
-function AppCard({ name, icon, description, platforms, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel }) {
+function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel }) {
   return (
     <article className={"app-card app-" + name.toLowerCase()}>
       <div className="app-main">
@@ -50,7 +55,24 @@ function AppCard({ name, icon, description, platforms, primaryUrl, primaryLabel 
         </div>
       </div>
       <div className="platforms" aria-label={name + " platforms"}>
-        {platforms.map((platform) => <span key={platform}>{platform}</span>)}
+        {platformAvailability.map((platform) => (
+          <span
+            className={"platform platform-" + platform.status}
+            key={platform.name}
+            role="group"
+            aria-label={platform.name + (platform.status === "available" ? ": available now" : ": coming soon")}
+          >
+            {platform.status === "available" ? (
+              <span className="platform-ready" aria-hidden="true">✓</span>
+            ) : (
+              <span className="platform-buffering" aria-hidden="true"><i></i><i></i><i></i></span>
+            )}
+            <span className="platform-copy">
+              <strong>{platform.name}</strong>
+              <small>{platform.status === "available" ? "Available now" : "Coming soon"}</small>
+            </span>
+          </span>
+        ))}
       </div>
       <div className="app-actions">
         <a className="app-store-link" href={primaryUrl} target="_blank" rel="noreferrer">
@@ -84,7 +106,6 @@ function AppsPage() {
           name="Duelio"
           icon="/images/duelio-app-icon.png"
           description="Quick competitive games with friends inside iMessage."
-          platforms={["iPhone", "iMessage"]}
           primaryUrl={duelioWebsiteUrl}
           primaryLabel="Website"
           secondaryHref="/support/#duelio"
@@ -94,7 +115,6 @@ function AppsPage() {
           name="WordFit"
           icon="/images/wordfit-app-icon.png"
           description="Fast trivia, logic, number, visual, and word puzzles."
-          platforms={["iPhone", "iPad", "Apple Watch"]}
           primaryUrl={wordfitAppStoreUrl}
           secondaryHref="/support/#wordfit"
           secondaryLabel="Support"
