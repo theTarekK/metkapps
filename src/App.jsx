@@ -1,10 +1,11 @@
-import { ArrowRight, ExternalLink, Mail, ShieldCheck } from "lucide-react";
+import { ArrowRight, Download, ExternalLink, Mail, ShieldCheck } from "lucide-react";
 
 
 const email = "contact@metkapps.com";
 const wordfitAppStoreUrl = "https://apps.apple.com/app/id6807604940";
 const duelioAppStoreUrl = "https://apps.apple.com/app/id6792538416";
 const duelioWebsiteUrl = "https://duelioapp.com/";
+const duelioPressKitUrl = "https://duelioapp.com/press/Duelio-Press-Kit.zip";
 const pagePath = window.location.pathname.replace(/\/+$/, "") || "/";
 const platformAvailability = [
   { name: "iOS", status: "available" },
@@ -44,7 +45,7 @@ function Footer() {
   );
 }
 
-function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel, pendingLabel = "Coming soon" }) {
+function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel, pressKitHref, pendingLabel = "Coming soon" }) {
   return (
     <article className={"app-card app-" + name.toLowerCase()}>
       <div className="app-main">
@@ -85,6 +86,12 @@ function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Stor
             <ArrowRight size={15} />
           </a>
         ) : null}
+        {pressKitHref ? (
+          <a className="text-link" href={pressKitHref}>
+            Press kit
+            <Download size={15} />
+          </a>
+        ) : null}
       </div>
     </article>
   );
@@ -111,6 +118,7 @@ function AppsPage() {
           pendingLabel="In progress"
           secondaryHref="/support/#duelio"
           secondaryLabel="Support"
+          pressKitHref={duelioPressKitUrl}
         />
         <AppCard
           name="WordFit"
