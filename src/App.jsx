@@ -44,7 +44,7 @@ function Footer() {
   );
 }
 
-function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel }) {
+function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel, pendingLabel = "Coming soon" }) {
   return (
     <article className={"app-card app-" + name.toLowerCase()}>
       <div className="app-main">
@@ -60,7 +60,7 @@ function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Stor
             className={"platform platform-" + platform.status}
             key={platform.name}
             role="group"
-            aria-label={platform.name + (platform.status === "available" ? ": available now" : ": coming soon")}
+            aria-label={platform.name + ": " + (platform.status === "available" ? "available now" : pendingLabel.toLowerCase())}
           >
             {platform.status === "available" ? (
               <span className="platform-ready" aria-hidden="true">✓</span>
@@ -69,7 +69,7 @@ function AppCard({ name, icon, description, primaryUrl, primaryLabel = "App Stor
             )}
             <span className="platform-copy">
               <strong>{platform.name}</strong>
-              <small>{platform.status === "available" ? "Available now" : "Coming soon"}</small>
+              <small>{platform.status === "available" ? "Available now" : pendingLabel}</small>
             </span>
           </span>
         ))}
@@ -108,6 +108,7 @@ function AppsPage() {
           description="Quick competitive games with friends inside iMessage."
           primaryUrl={duelioWebsiteUrl}
           primaryLabel="Website"
+          pendingLabel="In progress"
           secondaryHref="/support/#duelio"
           secondaryLabel="Support"
         />
