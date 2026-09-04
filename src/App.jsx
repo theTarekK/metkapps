@@ -5,6 +5,7 @@ const phoneDisplay = "(202) 290-8412";
 const phoneLink = "+12022908412";
 const wordfitAppStoreUrl = "https://apps.apple.com/app/id6807604940";
 const duelioAppStoreUrl = "https://apps.apple.com/app/id6792538416";
+const duelioWebsiteUrl = "https://duelioapp.com/";
 const pagePath = window.location.pathname.replace(/\/+$/, "") || "/";
 
 function Nav() {
@@ -36,7 +37,7 @@ function Footer() {
   );
 }
 
-function AppCard({ name, icon, description, platforms, appStoreUrl, secondaryHref, secondaryLabel }) {
+function AppCard({ name, icon, description, platforms, primaryUrl, primaryLabel = "App Store", secondaryHref, secondaryLabel }) {
   return (
     <article className={`app-card app-${name.toLowerCase()}`}>
       <div className="app-main">
@@ -50,8 +51,8 @@ function AppCard({ name, icon, description, platforms, appStoreUrl, secondaryHre
         {platforms.map((platform) => <span key={platform}>{platform}</span>)}
       </div>
       <div className="app-actions">
-        <a className="app-store-link" href={appStoreUrl} target="_blank" rel="noreferrer">
-          App Store
+        <a className="app-store-link" href={primaryUrl} target="_blank" rel="noreferrer">
+          {primaryLabel}
           <ExternalLink size={16} strokeWidth={2.2} />
         </a>
         {secondaryHref ? (
@@ -82,7 +83,8 @@ function AppsPage() {
           icon="/images/duelio-app-icon.png"
           description="Quick competitive games with friends inside iMessage."
           platforms={["iPhone", "iMessage"]}
-          appStoreUrl={duelioAppStoreUrl}
+          primaryUrl={duelioWebsiteUrl}
+          primaryLabel="Website"
           secondaryHref="/support/#duelio"
           secondaryLabel="Support"
         />
@@ -91,7 +93,7 @@ function AppsPage() {
           icon="/images/wordfit-app-icon.png"
           description="Fast trivia, logic, number, visual, and word puzzles."
           platforms={["iPhone", "iPad", "Apple Watch"]}
-          appStoreUrl={wordfitAppStoreUrl}
+          primaryUrl={wordfitAppStoreUrl}
           secondaryHref="/support/#wordfit"
           secondaryLabel="Support"
         />
